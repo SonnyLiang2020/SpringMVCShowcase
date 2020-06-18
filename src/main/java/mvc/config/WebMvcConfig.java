@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.web.context.request.async.TimeoutCallableProcessingInterceptor;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -63,8 +62,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
-		configurer.setDefaultTimeout(3000);
-		configurer.registerCallableInterceptors(new TimeoutCallableProcessingInterceptor());
+		configurer.setDefaultTimeout(8000);
+		configurer.registerCallableInterceptors(new mvc.async.TimeoutCallableProcessingInterceptor());
 	}
 
 	@Bean
